@@ -51,6 +51,7 @@ jobs:
         run: terraform apply -input=false -auto-approve tfplan
 
       - name: Output API URL
+      - name: Show API URL\n        working-directory: infra/envs/dev\n        run: |\n          echo \"API_BASE_URL=$(terraform output -raw api_base_url)\"
         id: out
         working-directory: infra/envs/dev
         run: echo "API=$(terraform output -raw api_base_url)" >> $GITHUB_OUTPUT
