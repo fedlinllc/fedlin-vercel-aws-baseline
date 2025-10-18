@@ -1,0 +1,18 @@
+---
+const api = import.meta.env.PUBLIC_API_URL ?? '/api/health';
+---
+<html lang="en">
+  <head><meta charset="utf-8" /><title>Fedlin Baseline</title></head>
+  <body>
+    <h1>Fedlin × Araptus — Baseline</h1>
+    <button id="ping">Ping Backend</button>
+    <pre id="out">Click "Ping Backend"…</pre>
+    <script type="module">
+      document.getElementById('ping').onclick = async () => {
+        const url = import.meta.env.PUBLIC_API_URL || '/api/health';
+        const res = await fetch(url);
+        document.getElementById('out').textContent = await res.text();
+      };
+    </script>
+  </body>
+</html>
