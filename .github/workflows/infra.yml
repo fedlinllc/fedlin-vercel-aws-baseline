@@ -1,0 +1,62 @@
+name: Infra (Terraform)
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths: [ "infra/**", "services/**", ".github/workflows/infra.yml" ]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  tf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/gh-oidc-fedlin
+          aws-region: us-east-1
+
+      - name: Package Lambda (health)
+        run: |
+          mkdir -p infra/modules/baseline/lambda_zips
+          (cd services/api && zip -r ../../infra/modules/baseline/lambda_zips/health.zip health.mjs)
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.5
+
+      - name: Init
+        working-directory: infra/envs/dev
+        run: terraform init -input=false
+
+      - name: Plan
+        working-directory: infra/envs/dev
+        run: terraform plan -out=tfplan -input=false
+
+      - name: Evidence (plan.json)
+        working-directory: infra/envs/dev
+        run: terraform show -json tfplan > ../../docs/evidence/plan.json
+
+      - name: Apply (main only)
+        if: github.ref == 'refs/heads/main'
+        working-directory: infra/envs/dev
+        run: terraform apply -input=false -auto-approve tfplan
+
+      - name: Output API URL
+        id: out
+        working-directory: infra/envs/dev
+        run: echo "API=$(terraform output -raw api_base_url)" >> $GITHUB_OUTPUT
+
+      - name: Save Evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-dev
+          path: docs/evidence

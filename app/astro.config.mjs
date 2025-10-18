@@ -1,2 +1,2 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({ output: 'server' });
+export default defineConfig({ output: 'static' });
