@@ -1,19 +1,13 @@
 name: Web (Vercel)
 on:
-  push:
-    branches: [ "main" ]
-    paths: [ "app/**", ".github/workflows/web.yml" ]
-  pull_request:
-    paths: [ "app/**" ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  workflow_dispatch:
+  workflow_dispatch:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+  workflow_dispatch:
       - name: Install
         working-directory: app
         run: npm ci || npm i
