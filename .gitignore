@@ -1,0 +1,19 @@
+# Node / build
+node_modules/
+.vercel/
+app/.env
+app/.env.local
+
+# Terraform
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Archives
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
