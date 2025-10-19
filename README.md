@@ -26,10 +26,11 @@ Security-first (SSO, CORS-locked) with an AWS API you can extend with continuous
 - Teams shipping on **Vercel + Astro** facing **HIPAA / PCI** buyer questions.
 - Leaders wanting **low ops, predictable spend**, and inspection-ready posture.
 
-### Outcomes you can show tomorrow
-- Live, secure baseline (Astro → API Gateway → Lambda) with `/health`.
-- Sample evidence summary you can hand to stakeholders (see `docs/evidence-summary.sample.md`).
-- Clear path to continuous checks (Security Hub + Config) with cost controls.
+### What you get
+- **Live, secure baseline**: Astro on Vercel calling a real AWS HTTP API (`/health`).
+- **Security by default**: CORS pinned to your domain; SSO-only operations.
+- **Compliance-ready**: Evidence automation path via AWS Config/Security Hub (optional add-on).
+
 
 ---
 
