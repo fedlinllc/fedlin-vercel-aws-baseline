@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    name: Build (Astro app)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: 'app/package-lock.json'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+  docs:
+    name: Docs lint (markdown)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Markdown style check
+        uses: DavidAnson/markdownlint-cli2-action@v15
+        with:
+          globs: |
+            **/*.md
+          config: |
+            {
+              "default": true,
+              "MD013": false,
+              "MD033": false
+            }
