@@ -3,12 +3,8 @@
 [![CI](https://github.com/fedlinllc/fedlin-vercel-aws-baseline/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-<p align="center"><strong>Compliance-ready “Hello-Prod” for Vercel & Astro</strong><br/>
-Security-first (SSO, CORS-locked) with an AWS API you can extend with continuous checks and on-demand evidence.</p>
-
-<p align="center">
-  <img src="docs/img/architecture.svg" alt="Vercel → API Gateway/Lambda → S3 Evidence" width="720" />
-</p>
+<p align="center"><strong>Vercel × AWS baseline for regulated apps</strong><br/>
+Astro on Vercel + API Gateway/Lambda, SSO-operated, compliance-ready (evidence add-on).</p>
 
 <p align="center">
   <a href="https://fedlin-vercel-aws-baseline.vercel.app"><b>See the live baseline</b></a> ·
