@@ -16,6 +16,24 @@ Security-first (SSO, CORS-locked) with an AWS API you can extend with continuous
 Security by default (SSO-operated, CORS-locked) plus an AWS API you can extend with **continuous monitoring** and **on-demand evidence** for regulated buyers.
 
 > Live demo: https://fedlin-vercel-aws-baseline.vercel.app  
+
+---
+
+### What this proves
+- **Production in hours**: Astro on Vercel calling a real AWS HTTP API (API Gateway → Lambda).
+- **Security by default**: CORS pinned to your domain; SSO-only ops (no long-lived keys).
+- **Compliance-ready**: Clean landing zone for continuous checks & evidence on demand.
+
+### Who it’s for
+- Teams shipping on **Vercel + Astro** facing **HIPAA / PCI** buyer questions.
+- Leaders wanting **low ops, predictable spend**, and inspection-ready posture.
+
+### How to engage
+- **See the live baseline**: https://fedlin-vercel-aws-baseline.vercel.app
+- **Talk to us about compliance**: https://fedlin.com/contact
+
+---
+
 > Contact: https://fedlin.com/contact
 
 ---
