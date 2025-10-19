@@ -32,6 +32,9 @@ jobs:
         with:
           terraform_version: 1.9.5
 
+      - name: Ensure evidence dir
+        run: mkdir -p docs/evidence
+
       - name: Init
         working-directory: infra/envs/dev
         run: terraform init -input=false
@@ -42,7 +45,7 @@ jobs:
 
       - name: Evidence (plan.json)
         working-directory: infra/envs/dev
-        run: terraform show -json tfplan > ../../docs/evidence/plan.json
+        run: terraform show -json tfplan > ../../../docs/evidence/plan.json
 
       - name: Apply (main only)
         if: github.ref == 'refs/heads/main'
@@ -56,8 +59,7 @@ jobs:
 
       - name: Show API URL
         working-directory: infra/envs/dev
-        run: |
-          echo "API_BASE_URL=$(terraform output -raw api_base_url)"
+        run: echo "API_BASE_URL=$(terraform output -raw api_base_url)"
 
       - uses: actions/upload-artifact@v4
         with:
