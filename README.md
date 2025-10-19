@@ -1,5 +1,17 @@
 # FEDLIN — Vercel × AWS Baseline
 
+<p align="center"><strong>Compliance-ready baseline for Vercel & Astro</strong><br/>
+Security-first (SSO, CORS-locked) with an AWS API you can extend with continuous checks and on-demand evidence.</p>
+
+<p align="center">
+  <img src="docs/img/architecture.svg" alt="Vercel → API Gateway/Lambda → S3 Evidence" width="720" />
+</p>
+
+<p align="center">
+  <a href="https://fedlin-vercel-aws-baseline.vercel.app"><b>See the live baseline</b></a> · <a href="https://fedlin.com/contact">Talk to us about compliance</a>
+</p>
+
+
 **A compliance-ready “Hello-Prod” for Vercel & Astro.**  
 Security by default (SSO-operated, CORS-locked) plus an AWS API you can extend with **continuous monitoring** and **on-demand evidence** for regulated buyers.
 
