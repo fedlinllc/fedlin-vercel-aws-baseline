@@ -1,2 +1,50 @@
-# Fedlin — Vercel + AWS Baseline (MVP)
-Initial repository scaffold. (Infra, app, and CI will be added next.)
+# FEDLIN — Vercel × AWS Baseline
+
+[![CI](https://github.com/fedlinllc/fedlin-vercel-aws-baseline/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+<p align="center"><strong>Compliance-ready “Hello-Prod” for Vercel & Astro</strong><br/>
+Security-first (SSO, CORS-locked) with an AWS API you can extend with continuous checks and on-demand evidence.</p>
+
+<p align="center">
+  <img src="docs/img/architecture.svg" alt="Vercel → API Gateway/Lambda → S3 Evidence" width="720" />
+</p>
+
+<p align="center">
+  <a href="https://fedlin-vercel-aws-baseline.vercel.app"><b>See the live baseline</b></a> ·
+  <a href="https://fedlin.com/contact">Talk to us about compliance</a>
+</p>
+
+---
+
+## What this baseline proves
+- **Production in hours**: Astro on Vercel calling a real AWS HTTP API (API Gateway → Lambda).
+- **Security by default**: CORS pinned to your domain; SSO-only ops (no long-lived keys).
+- **Compliance-ready**: Clean landing zone for continuous checks & evidence on demand.
+
+## Who it’s for
+- Teams shipping on **Vercel + Astro** facing **HIPAA / PCI** buyer questions.
+- Leaders wanting **low ops, predictable spend**, and inspection-ready posture.
+
+## Outcomes you can show tomorrow
+- Live, secure baseline (Astro → API Gateway → Lambda) with `/health`.
+- Sample evidence summary you can hand to stakeholders (see `docs/evidence-summary.sample.md`).
+- Clear path to continuous checks (Security Hub + Config), with cost controls.
+
+---
+
+## Optional add-on: Compliance Pack (HIPAA/PCI-ready)
+A lightweight AWS layer alongside your Vercel/Astro site that keeps you inspection-ready.
+
+- **Continuous checks** (single region): enable Security Hub (FSBP/CIS) + Config (selective recording)  
+- **Evidence on demand**: API endpoint compiles findings & inventory to S3 (JSON + summary.md)  
+- **Guardrails**: CORS pinned to prod, SSO-only ops, throttling defaults, log-retention caps, lifecycle on artifacts
+
+> Not a certification product. We automate technical controls & evidence—**you own policy & process**.  
+> More: `docs/compliance-pack.md`
+
+---
+
+## License
+MIT — see [LICENSE](./LICENSE).
+
