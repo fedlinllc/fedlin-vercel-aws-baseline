@@ -1,17 +1,4 @@
----
-const API_URL = import.meta.env.PUBLIC_API_URL ?? '/api/health';
----
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Fedlin Baseline</title>
-  </head>
-  <body data-api-url={API_URL}>
-    <h1>Fedlin × Araptus — Baseline</h1>
-    <button id="ping">Ping Backend</button>
-    <pre id="out">Click "Ping Backend"…</pre>
-
-    <script type="module">
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><title>Fedlin Baseline</title></head> <body data-api-url="https://<your-api-id>.execute-api.us-east-2.amazonaws.com/health"> <h1>Fedlin × Araptus — Baseline</h1> <button id="ping">Ping Backend</button> <pre id="out">Click "Ping Backend"…</pre> <script type="module">
       const url = document.body.dataset.apiUrl || '/api/health';
       document.getElementById('ping').onclick = async () => {
         try {
@@ -22,6 +9,4 @@ const API_URL = import.meta.env.PUBLIC_API_URL ?? '/api/health';
           document.getElementById('out').textContent = 'Request failed: ' + err;
         }
       };
-    </script>
-  </body>
-</html>
+    </script> </body> </html>
