@@ -50,3 +50,9 @@ A lightweight AWS layer alongside your Vercel/Astro site that keeps you inspecti
 
 ## License
 MIT — see [LICENSE](./LICENSE).
+
+---
+
+## Contact
+- **Live baseline:** https://fedlin-vercel-aws-baseline.vercel.app  
+- **Work with us on compliance:** https://fedlin.com/contact
