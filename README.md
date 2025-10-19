@@ -43,6 +43,12 @@ A lightweight AWS layer alongside your Vercel/Astro site that keeps you inspecti
 > Not a certification product. We automate technical controls & evidence—**you own policy & process**.  
 > More: `docs/compliance-pack.md`
 
+> **Scope & Limitations**
+> - This repository demonstrates *technical controls & evidence automation*.
+> - It is **not** a certification product (HIPAA/PCI). Policy & process remain customer-owned.
+> - The live demo uses a public health endpoint only; admin/privileged routes require authentication.
+
+
 ---
 
 ## License
