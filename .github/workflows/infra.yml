@@ -1,4 +1,5 @@
 name: Infra (Terraform)
+
 on:
   workflow_dispatch:
   push:
@@ -14,22 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Configure AWS (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/gh-oidc-fedlin
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Package Lambda (health)
         run: |
           mkdir -p infra/modules/baseline/lambda_zips
           (cd services/api && zip -r ../../infra/modules/baseline/lambda_zips/health.zip health.mjs)
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.9.5
 
@@ -51,13 +50,16 @@ jobs:
         run: terraform apply -input=false -auto-approve tfplan
 
       - name: Output API URL
-      - name: Show API URL\n        working-directory: infra/envs/dev\n        run: |\n          echo \"API_BASE_URL=$(terraform output -raw api_base_url)\"
         id: out
         working-directory: infra/envs/dev
         run: echo "API=$(terraform output -raw api_base_url)" >> $GITHUB_OUTPUT
 
-      - name: Save Evidence
-        uses: actions/upload-artifact@v4
+      - name: Show API URL
+        working-directory: infra/envs/dev
+        run: |
+          echo "API_BASE_URL=$(terraform output -raw api_base_url)"
+
+      - uses: actions/upload-artifact@v4
         with:
           name: evidence-dev
           path: docs/evidence
