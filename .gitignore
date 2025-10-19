@@ -19,3 +19,5 @@ crash.log
 Thumbs.db
 .vercel
 app/.env.*
+app/dist/
+app/.vercel/
