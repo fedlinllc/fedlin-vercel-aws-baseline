@@ -17,17 +17,29 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install
-        working-directory: app
-        run: npm ci
-      - name: Build
-        working-directory: app
-        run: npm run build
-      - name: Deploy to Vercel (linked project in app/)
+
+      - name: Prepare env for build (PUBLIC_ vars get embedded)
         working-directory: app
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
         run: |
           echo "PUBLIC_API_URL=$PUBLIC_API_URL" > .env
-          npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" --prod
+          cat .env
+
+      - name: Install
+        working-directory: app
+        run: npm ci
+
+      - name: Build (Astro)
+        working-directory: app
+        run: npm run build
+
+      - name: Prebuild for Vercel (creates .vercel/output)
+        working-directory: app
+        run: npx vercel build
+
+      - name: Deploy to Vercel (prebuilt)
+        working-directory: app
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" --prod
